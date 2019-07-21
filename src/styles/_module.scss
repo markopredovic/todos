@@ -1,0 +1,94 @@
+/* ----------------------------
+    module:
+------------------------------*/
+
+/* title: */
+.title-page {
+    font-size: 3rem;
+    color: $blue-light;
+}
+
+/* add todo form: */
+.addTodoForm {
+    .btn-toggle {
+        display: inline-block;
+        padding: 0 7px;
+        margin-bottom: 7px;
+        color: $dark;
+        background-color: $gray;
+        border-radius: 2px;
+        text-decoration: none;
+    }
+
+    select {
+        height: 35px;
+        line-height: 35px;
+        padding: 0 10px;
+        font-size: 1.6rem;
+        border: unset;
+        color: $black;
+        background-color: $blue-light;
+    }
+    input {
+        padding: 0 10px;
+        height: 35px;
+        line-height: 35px;
+        color: $black;
+        background-color: $blue-light;
+        border: none;
+    }
+    button {
+        padding: 0 20px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        border: none;
+        color: white;
+        background-color: $green-dark;
+    }
+}
+
+.m-todo {
+    position: relative;
+    padding: 0 30px 0 10px;
+    display: flex;
+    align-items: center;
+
+    &.priority-a { background-color: $red; }
+    &.priority-b { background-color: $orange; }
+    &.priority-c { background-color: $yellow; color: $black; }
+
+    &:hover {
+        font-weight: 700;
+
+        &.priority-a { background-color: darken($red, 5%); }
+        &.priority-b { background-color: darken($orange, 5%); }
+        &.priority-c { background-color: darken($yellow, 5%); color: $black; }
+    }
+
+    span {
+        display: inline-block;
+        height: 45px;
+        line-height: 45px;
+    }
+
+    button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0;
+        border: none;
+        background-color: unset;
+        span {
+            display: flex;
+            width: 45px;
+            justify-content: center;
+            align-items: center;
+            color: $dark;
+        }
+
+        &:hover span { font-size: 2.4rem; }
+    }
+}

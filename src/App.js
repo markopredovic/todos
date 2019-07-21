@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import "./App.css";
+import "./styles/styles.scss";
 import AddTodoForm from "./components/AddTodoForm";
 import TodoList from "./components/TodoList";
 import TodosContext from "./context/TodosContext";
@@ -27,62 +27,75 @@ const App = () => {
           result.push(_todo);
         }
 
+        // sort todos by priority
+        result.sort((a, b) => {
+          if (a.priority < b.priority) {
+            return -1;
+          }
+
+          if (a.priority > b.priority) {
+            return 1;
+          }
+
+          return 0;
+        });
+
         dispatch({
           type: GET_LIST,
           payload: result
-        })
+        });
       });
   }, []);
 
   const addTodo = todo => {
-    // also add to firebase
     axios
       .post("https://react-proba.firebaseio.com/todos.json", {
         id: todo.id,
+        priority: todo.priority,
+        type: todo.type,
         name: todo.name,
         isCompleted: false
       })
       .then(response => response.data)
       .then(data => {
-        todo.parentId =  data.name;
+        todo.parentId = data.name;
         dispatch({
           type: ADD_TODO,
           payload: todo
         });
-      })
+      });
   };
-  const removeTodo = parentId => {
 
-    axios.delete(`https://react-proba.firebaseio.com/todos/${parentId}.json`)
+  const removeTodo = parentId => {
+    axios
+      .delete(`https://react-proba.firebaseio.com/todos/${parentId}.json`)
       .then(() => {
         dispatch({
           type: REMOVE_TODO,
           payload: parentId
         });
-      })
+      });
   };
 
   const toggleTodo = todo => {
-
-    axios.patch(`https://react-proba.firebaseio.com/todos/${todo.parentId}.json`, {isCompleted: todo.isCompleted})
+    axios
+      .patch(`https://react-proba.firebaseio.com/todos/${todo.parentId}.json`, {
+        isCompleted: todo.isCompleted
+      })
       .then(() => {
         dispatch({
           type: TOGGLE_TODO,
           payload: todo
         });
-      })
-
-
-
-
+      });
   };
 
   return (
     <TodosContext.Provider
       value={{ todos: state.todos, addTodo, removeTodo, toggleTodo }}
     >
-      <div className="App">
-        <h1>Todo list</h1>
+      <div className="l-app-todo">
+        <h1 className="title-page">Todo list</h1>
         <AddTodoForm />
         <TodoList />
       </div>

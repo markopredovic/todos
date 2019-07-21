@@ -1,0 +1,25 @@
+/* ----------------------------
+    layout:
+------------------------------*/
+.l-app-todo {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+
+    h1.title-page { margin: 0 0 $s-margin 0; }
+
+    .addTodoForm {
+        margin-bottom: $s-margin;
+
+        .l-field { margin-bottom: $s-margin / 2; }
+        .l-field:last-child { margin-bottom: 0; }
+        select { margin-right: $s-margin; }
+        input { margin-right: $s-margin; }
+    }
+
+    .l-todoList {
+        .l-todo {
+            margin-bottom: 2px;
+        }
+    }
+}

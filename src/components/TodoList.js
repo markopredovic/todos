@@ -9,11 +9,11 @@ const TodoList = () => {
     let todos = 'Loading...';
 
     if(context.todos) {
-        todos = context.todos.map(todo => <Todo key={todo.parentId} {...todo}/>);
+        todos = context.todos.map((todo, index) => <Todo key={index} {...todo}/>);
     }
 
     return(
-        <div>{todos}</div>
+        <div className="l-todoList">{todos}</div>
     )
 }
 

@@ -34,7 +34,7 @@ const removeTodo = (state, parentId) => {
 }
 
 const toggleTodo = (state, todo) => {
-    const toggleTodos = [...state.todos].map(current => current.id === todo.id ? {id: current.id, name: current.name, isCompleted: todo.isCompleted, parentId: current.parentId} : current);
+    const toggleTodos = [...state.todos].map(current => current.id === todo.id ? {id: current.id, priority: current.priority, type: current.type, name: current.name, isCompleted: todo.isCompleted, parentId: current.parentId} : current);
     
     return {
         ...state,
