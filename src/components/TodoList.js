@@ -5,6 +5,8 @@ import Todo from './Todo'
 const TodoList = () => {
 
     const context = useContext(TodosContext);
+    console.log('Todo list rendering');
+    
 
     let todos = 'Loading...';
 
